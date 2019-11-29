@@ -42,6 +42,7 @@ jobs:
           asset_name: android_apk_v1.0.${{ steps.buildnumber.outputs.build_number }}.apk
           tag: v1.0.${{ steps.buildnumber.outputs.build_number }}
           overwrite: true
+        
   job2:
     name: building ipa file
     runs-on: [macOS-latest]
@@ -67,7 +68,7 @@ jobs:
         
       - name: build ipa
         working-directory: ./hello_github_actions_flutter
-        run: flutter -v build ios --no-codesign
+        run: flutter -v build ios --no-codesign --debug
         
 #       - name: Upload apk to artifacts
 #         uses: actions/upload-artifact@v1
