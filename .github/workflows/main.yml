@@ -68,7 +68,7 @@ jobs:
         
       - name: build ipa
         working-directory: ./hello_github_actions_flutter
-        run: flutter -v build ios --no-codesign --debug
+        run: flutter build ios --no-codesign --debug
         
 #       - name: Upload apk to artifacts
 #         uses: actions/upload-artifact@v1
