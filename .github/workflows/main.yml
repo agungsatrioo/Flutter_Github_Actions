@@ -84,7 +84,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: homework
-          path: ./Users/runner/runners/2.161.0/work/Flutter_Github_Actions/Flutter_Github_Actions/hello_github_actions_flutter/build/ios/iphoneos/Runner.app
+          path: /Users/runner/runners/2.161.0/work/Flutter_Github_Actions/Flutter_Github_Actions/hello_github_actions_flutter/build/ios/iphoneos/Runner.app
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v1-release
