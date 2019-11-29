@@ -1,22 +1,12 @@
-name: 'Flutter Android Debug'
+name: 'Flutter Android + IOS Debug'
 on: push
 jobs:
-  build:
-    name: install dependencies
-    runs-on: macOS-latest
+  job1:
+    name: building apk file
+    runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v1
-      - name: Hello world
-        run: |
-          echo /home/runner/work/Github-Actions-Flutter/Github-Actions-Flutter/hello_github_actions_flutter/build/app/outputs/apk/release/app-release.apk
-          echo GITHUB_WORKSPACE= $GITHUB_WORKSPACE
-          echo GITHUB_WORKFLOW= $GITHUB_WORKFLOW
-          echo GITHUB_ACTION= $GITHUB_ACTION
-          echo GITHUB_ACTOR= $GITHUB_ACTOR
-          echo GITHUB_REPOSITORY= $GITHUB_REPOSITORY
-          echo GITHUB_EVENT_NAME= $GITHUB_EVENT_NAME
-          echo GITHUB_REF= $GITHUB_REF
-          echo GITHUB_SHA= $GITHUB_SHA
+        
       - name: Generate build number
         id: buildnumber
         uses: einaregilsson/build-number@v2 
@@ -38,10 +28,6 @@ jobs:
         working-directory: ./hello_github_actions_flutter
         run: flutter build apk
         
-      - name: build ipa
-        working-directory: ./hello_github_actions_flutter
-        run: flutter build ios
-        
       - name: Upload apk to artifacts
         uses: actions/upload-artifact@v1
         with:
@@ -56,5 +42,45 @@ jobs:
           asset_name: android_apk_v1.0.${{ steps.buildnumber.outputs.build_number }}.apk
           tag: v1.0.${{ steps.buildnumber.outputs.build_number }}
           overwrite: true
-         
+  job2:
+    name: building ipa file
+    runs-on: [macOS-latest]
+    steps:
+      - uses: actions/checkout@v1
+        
+      - name: Generate build number
+        id: buildnumber
+        uses: einaregilsson/build-number@v2 
+        with:
+          token: ${{secrets.github_token}}
+        
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.7.8+hotfix.4'
+      
+      - name: Install dependencies
+        working-directory: ./hello_github_actions_flutter
+        run: flutter pub get
+        
+      - name: build ipa
+        working-directory: ./hello_github_actions_flutter
+        run: flutter build ios
+        
+#       - name: Upload apk to artifacts
+#         uses: actions/upload-artifact@v1
+#         with:
+#           name: homework
+#           path: ./hello_github_actions_flutter/build/app/outputs/apk/release/app-release.apk
+      
+#       - name: Upload binaries to release
+#         uses: svenstaro/upload-release-action@v1-release
+#         with:
+#           repo_token: ${{ secrets.GITHUB_TOKEN }}
+#           file: /home/runner/work/Flutter_Github_Actions/Flutter_Github_Actions/hello_github_actions_flutter/build/app/outputs/apk/release/app-release.apk
+#           asset_name: android_apk_v1.0.${{ steps.buildnumber.outputs.build_number }}.apk
+#           tag: v1.0.${{ steps.buildnumber.outputs.build_number }}
+#           overwrite: true         
 
