@@ -76,12 +76,12 @@ jobs:
           name: homework
           path: /Users/runner/runners/2.161.0/work/Flutter_Github_Actions/Flutter_Github_Actions/hello_github_actions_flutter/build/ios/iphoneos/Runner.app
 
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v1-release
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /Users/runner/runners/2.161.0/work/Flutter_Github_Actions/Flutter_Github_Actions/hello_github_actions_flutter/build/ios/iphoneos/Runner.app
-          asset_name: ios_app_v1.0.${{ steps.buildnumber.outputs.build_number }}.apk
-          tag: ios_v1.0.${{ steps.buildnumber.outputs.build_number }}
-          overwrite: true         
+#       - name: Upload binaries to release
+#         uses: svenstaro/upload-release-action@v1-release
+#         with:
+#           repo_token: ${{ secrets.GITHUB_TOKEN }}
+#           file: /Users/runner/runners/2.161.0/work/Flutter_Github_Actions/Flutter_Github_Actions/hello_github_actions_flutter/build/ios/iphoneos/Runner.app
+#           asset_name: ios_app_v1.0.${{ steps.buildnumber.outputs.build_number }}.apk
+#           tag: ios_v1.0.${{ steps.buildnumber.outputs.build_number }}
+#           overwrite: true         
 
