@@ -48,7 +48,7 @@ jobs:
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: /home/runner/work/Github-Actions-Flutter/Github-Actions-Flutter/hello_github_actions_flutter/build/app/outputs/apk/release/app-release.apk
+          file: /home/runner/work/Flutter_Github_Actions/Flutter_Github_Actions/hello_github_actions_flutter/build/app/outputs/apk/release/app-release.apk
           asset_name: android_apk_v1.0.${{ steps.buildnumber.outputs.build_number }}
           tag: v1.0.${{ steps.buildnumber.outputs.build_number }}
           overwrite: true
